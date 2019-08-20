@@ -1,0 +1,329 @@
+<html>
+
+<head>
+    <meta charset="UTF-8"> 
+    <title>
+        Converter
+    </title>
+    <style>
+    button{
+        width: 100px;
+        height: 60px;
+
+    }
+    body > div{
+        display: flex;
+        flex-direction: row;
+    }
+    .form{
+        display: flex;
+        flex-direction: column;
+    }
+
+    </style>
+</head>
+
+<body>
+    <button onclick="on_length()">Length</button>
+    <button onclick="on_temp()">Temperature</button>
+    <button onclick="on_vol()">Volume</button>
+    <div>
+        <div id="input_form" class="form">
+            <input id="input" placeholder="input"/>
+            <div>
+                <div>
+                    <input type="radio" id="i1" name="in" value="meter" checked>
+                    <label for="meter">Meter</label>
+                </div>
+
+                <div>
+                    <input type="radio" id="i2" name="in" value="kilometer" >
+                    <label for="kilometer">Kilometer</label>
+                </div>
+
+                <div>
+                    <input type="radio" id="i3" name="in" value="lightyear" >
+                    <label for="lightyear">Lightyear</label>
+                </div>
+                <div>
+                    <input type="radio" id="i4" name="in" value="mile" >
+                    <label for="mile">Mile</label>
+                </div>
+            </div>
+            
+    </div>
+
+    <div id="output_form" class="form">
+            <input id="output" placeholder="output"/>
+            <div>
+                <div>
+                    <input type="radio" id="o1" name="out" value="meter" checked>
+                    <label for="meter">Meter</label>
+                </div>
+
+                <div>
+                    <input type="radio" id="o2" name="out" value="kilometer">
+                    <label for="kilometer">Kilometer</label>
+                </div>
+
+                <div>
+                    <input type="radio" id="o3" name="out" value="lightyear">
+                    <label for="lightyear">Lightyear</label>
+                </div>
+                <div>
+                    <input type="radio" id="o4" name="out" value="mile">
+                    <label for="mile">Mile</label>
+                </div>
+            </div>
+            
+    </div>
+
+    </div>
+    <button id="btn-convert" onclick="convert_length()">CONVERT</button>
+</body>
+
+<script>
+    function convert_length(){
+        let input=document.getElementById('input').value
+        if(parseInt(input)||input==='0')
+        {
+            let input_type=document.querySelector('input[name="in"]:checked').value
+            let output_type=document.querySelector('input[name="out"]:checked').value
+            switch(input_type){
+                case 'meter': input=parseInt(input)
+                break;
+                case 'kilometer': input*=1000
+                break;
+                case 'lightyear': input*=9460730472580044
+                break;
+                case 'mile': input*=1609.35
+                break;
+                default:'error'
+            }
+            console.log(input)
+            switch(output_type){
+                case 'meter': output=input
+                break;
+                case 'kilometer': output=input/1000;
+                break;
+                case 'lightyear': output=input/9460730472580044
+                break;
+                case 'mile': output=input/1609.35
+                break;
+                default:'error'
+            }
+            document.getElementById('output').value=output
+        }
+        else
+        {
+            alert('please input number')
+        }
+        
+    }
+
+    function convert_temp(){
+        let input=document.getElementById('input').value
+        if(parseInt(input)||input==='0')
+        {
+            let input_type=document.querySelector('input[name="in"]:checked').value
+            let output_type=document.querySelector('input[name="out"]:checked').value
+            switch(input_type){
+                case 'celsius': input=parseInt(input)
+                break;
+                case 'kelvin': input-=273.15
+                break;
+                case 'farenheit': input=(input-32)*(5/9)
+                break;
+                default:'error'
+            }
+            console.log(input)
+            switch(output_type){
+                case 'celsius': output=input
+                break;
+                case 'kelvin': output=input+273.15;
+                break;
+                case 'farenheit': output=input*(9/5)+32;
+                break;
+                default:'error'
+            }
+            document.getElementById('output').value=output
+        }
+        else
+        {
+            alert('please input number')
+        }
+    }
+
+    function convert_vol(){
+        let input=document.getElementById('input').value
+        if(parseInt(input)||input==='0')
+        {
+            let input_type=document.querySelector('input[name="in"]:checked').value
+            let output_type=document.querySelector('input[name="out"]:checked').value
+            switch(input_type){
+                case 'litre': input=parseInt(input)
+                break;
+                case 'milli_litre': input/=1000
+                break;
+                case 'gallon': input*=3.785
+                break;
+                case 'tea_spoon': input/=202.884
+                break;
+                default:'error'
+            }
+            console.log(input)
+            switch(output_type){
+                case 'litre': output=input
+                break;
+                case 'milli_litre': output=input*1000;
+                break;
+                case 'gallon': output=input/3.785
+                break;
+                case 'tea_spoon': output=input*202.884
+                break;
+                default:'error'
+            }
+            document.getElementById('output').value=output
+        }
+        else
+        {
+            alert('please input number')
+        }
+    }
+
+    function on_length(){
+        //alert('selected length')
+        a=document.getElementById('input_form').children[1]
+        //console.log(a)
+        div="<div>"
+            div+="<input type='radio' id='i1' name='in' value='meter' checked>"
+            div+="<label for='Meter'>Meter</label>"
+        div+="</div>"
+        div+="<div>"
+            div+="<input type='radio' id='i2' name='in' value='kilometer' >"
+            div+="<label for='Kilometer'>Kilometer</label>"
+        div+="</div>"
+        div+="<div>"
+            div+="<input type='radio' id='i3' name='in' value='lightyear' >"
+            div+="<label for='Lightyear'>Lightyear</label>"
+        div+="</div>"
+        div+="<div>"
+            div+="<input type='radio' id='i4' name='in' value='mile' >"
+            div+="<label for='Mile'>Mile</label>"
+        div+="</div>"   
+        //console.log(div)
+        a.innerHTML=div    
+
+        b=document.getElementById('output_form').children[1]
+        //console.log(b)
+        div="<div>"
+            div+="<input type='radio' id='o1' name='out' value='meter' checked>"
+            div+="<label for='Meter'>Meter</label>"
+        div+="</div>"
+        div+="<div>"
+            div+="<input type='radio' id='o2' name='out' value='kilometer' >"
+            div+="<label for='Kilometer'>Kilometer</label>"
+        div+="</div>"
+        div+="<div>"
+            div+="<input type='radio' id='o3' name='out' value='lightyear' >"
+            div+="<label for='Lightyear'>Lightyear</label>"
+        div+="</div>"
+        div+="<div>"
+            div+="<input type='radio' id='o4' name='out' value='mile' >"
+            div+="<label for='Mile'>Mile</label>"
+        div+="</div>"        
+        //console.log(div)
+
+        b.innerHTML=div
+        document.getElementById('btn-convert').setAttribute("onclick","convert_length()")
+    }
+
+    function on_temp(){
+        //alert('selected temp')
+        a=document.getElementById('input_form').children[1]
+        //console.log(a)
+        div="<div>"
+            div+="<input type='radio' id='i1' name='in' value='celsius' checked>"
+            div+="<label for='Celsius'>Celsius</label>"
+        div+="</div>"
+        div+="<div>"
+            div+="<input type='radio' id='i2' name='in' value='kelvin' >"
+            div+="<label for='Kelvin'>Kelvin</label>"
+        div+="</div>"
+        div+="<div>"
+            div+="<input type='radio' id='i3' name='in' value='farenheit' >"
+            div+="<label for='Fahrenheit'>Fahrenheit</label>"
+        div+="</div>"
+        //console.log(div)
+        a.innerHTML=div    
+
+        b=document.getElementById('output_form').children[1]
+        //console.log(b)
+        div="<div>"
+            div+="<input type='radio' id='o1' name='out' value='celsius' checked>"
+            div+="<label for='Celsius'>Celsius</label>"
+        div+="</div>"
+        div+="<div>"
+            div+="<input type='radio' id='o2' name='out' value='kelvin' >"
+            div+="<label for='Kelvin'>Kelvin</label>"
+        div+="</div>"
+        div+="<div>"
+            div+="<input type='radio' id='o3' name='out' value='farenheit' >"
+            div+="<label for='Fahrenheit'>Fahrenheit</label>"
+        div+="</div>"
+        //console.log(div)
+
+        b.innerHTML=div
+        document.getElementById('btn-convert').setAttribute("onclick","convert_temp()")
+    }
+
+    function on_vol(){
+        //alert('selected vol')
+        a=document.getElementById('input_form').children[1]
+        //console.log(a)
+        div="<div>"
+            div+="<input type='radio' id='i1' name='in' value='litre' checked>"
+            div+="<label for='Litre'>Litre</label>"
+        div+="</div>"
+        div+="<div>"
+            div+="<input type='radio' id='i2' name='in' value='milli_litre' >"
+            div+="<label for='Mililitre'>Mililitre</label>"
+        div+="</div>"
+        div+="<div>"
+            div+="<input type='radio' id='i3' name='in' value='gallon' >"
+            div+="<label for='US Gallon'>US Gallon</label>"
+        div+="</div>"
+        div+="<div>"
+            div+="<input type='radio' id='i4' name='in' value='tea_spoon' >"
+            div+="<label for='Imperial Tea Spoon'>Imperial Tea Spoon</label>"
+        div+="</div>"  
+        //console.log(div)
+        a.innerHTML=div    
+
+        b=document.getElementById('output_form').children[1]
+        //console.log(b)
+        div="<div>"
+            div+="<input type='radio' id='o1' name='out' value='litre' checked>"
+            div+="<label for='Litre'>Litre</label>"
+        div+="</div>"
+        div+="<div>"
+            div+="<input type='radio' id='o2' name='out' value='milli_litre' >"
+            div+="<label for='Mililitre'>Mililitre</label>"
+        div+="</div>"
+        div+="<div>"
+            div+="<input type='radio' id='o3' name='out' value='gallon' >"
+            div+="<label for='US Gallon'>US Gallon</label>"
+        div+="</div>"
+        div+="<div>"
+            div+="<input type='radio' id='o4' name='out' value='tea_spoon' >"
+            div+="<label for='Imperial Tea Spoon'>Imperial Tea Spoon</label>"
+        div+="</div>"        
+        //console.log(div)
+
+        b.innerHTML=div
+        
+        document.getElementById('btn-convert').setAttribute("onclick","convert_vol()")
+    }
+
+</script>
+</html>
